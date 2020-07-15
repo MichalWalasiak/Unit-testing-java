@@ -5,6 +5,16 @@ public class Account {
     private boolean Active;
     private Adress defoultDeliveryAdress;
 
+    public Account(Adress defoultDeliveryAdress) {
+        this.defoultDeliveryAdress = defoultDeliveryAdress;
+
+        if (defoultDeliveryAdress != null){
+            activate();
+        }else{
+            this.Active = false;
+        }
+    }
+
     public Account(){
         this.Active = false;
     }
