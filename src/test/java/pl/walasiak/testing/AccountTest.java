@@ -1,10 +1,12 @@
 package pl.walasiak.testing;
 
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assumptions.assumingThat;
 
 class AccountTest {
 
@@ -46,7 +48,7 @@ class AccountTest {
     void defoultDeliveryAdressShouldNotBeNullAfterBeingSet(){
         //given
         Account account = new Account();
-        Adress adress = new Adress("szkolna", 5);
+        Adress adress = new Adress("szkolna", "5");
         account.setDefoultDeliveryAdress(adress);
         //when
         Adress defaoultAdress = account.getDefoultDeliveryAdress();
@@ -54,5 +56,20 @@ class AccountTest {
         assertNotNull(defaoultAdress);
         assertThat(defaoultAdress).isNotNull();
 
+    }
+
+    @RepeatedTest(5)
+    void accountWithNotNullDefaultAdressShouldBeActive(){
+        //given
+        Adress adress = new Adress("Puławska", "46");
+
+        //when
+        Account account = new Account(adress);
+
+        //then
+        assumingThat(adress == null, ()->{
+            assertTrue(account.isActive());
+
+        });
     }
 }
