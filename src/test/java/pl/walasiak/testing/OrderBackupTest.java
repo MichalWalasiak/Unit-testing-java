@@ -21,6 +21,7 @@ public class OrderBackupTest {
         order = new Order();
     }
 
+    @Tag("Fries")
     @Test
     void backupOrderWithOneMeal() throws IOException {
         //given
