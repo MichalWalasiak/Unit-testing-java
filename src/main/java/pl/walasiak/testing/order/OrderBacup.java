@@ -1,4 +1,6 @@
-package pl.walasiak.testing;
+package pl.walasiak.testing.order;
+
+import pl.walasiak.testing.order.Order;
 
 import java.io.*;
 

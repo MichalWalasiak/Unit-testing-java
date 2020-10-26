@@ -1,6 +1,9 @@
-package pl.walasiak.testing;
+package pl.walasiak.testing.order;
 
 import org.junit.jupiter.api.*;
+import pl.walasiak.testing.Meal;
+import pl.walasiak.testing.order.Order;
+import pl.walasiak.testing.order.OrderBackup;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

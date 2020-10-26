@@ -1,9 +1,11 @@
-package pl.walasiak.testing;
+package pl.walasiak.testing.order;
+
+import pl.walasiak.testing.Meal;
 
 import java.util.ArrayList;
 import java.util.List;
 
-class Order {
+public class Order {
 
     private List<Meal> meals = new ArrayList<>();
 
