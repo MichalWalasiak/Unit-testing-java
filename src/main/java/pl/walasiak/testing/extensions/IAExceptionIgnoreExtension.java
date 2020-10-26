@@ -1,9 +1,8 @@
-package pl.walasiak.testing;
+package pl.walasiak.testing.extensions;
 
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.TestExecutionExceptionHandler;
 
-import java.io.IOException;
 import java.util.logging.Logger;
 
 public class IAExceptionIgnoreExtension implements TestExecutionExceptionHandler {

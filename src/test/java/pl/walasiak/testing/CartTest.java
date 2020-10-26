@@ -1,6 +1,7 @@
 package pl.walasiak.testing;
 
 import org.junit.jupiter.api.*;
+import pl.walasiak.testing.order.Order;
 
 import java.time.Duration;
 import java.util.List;
