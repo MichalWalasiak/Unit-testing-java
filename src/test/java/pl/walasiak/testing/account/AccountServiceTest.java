@@ -8,5 +8,8 @@ class AccountServiceTest {
 
     @Test
     void getAllActiveAccounts() {
+        // Given
+        AccountRepository accountRepositoryStub = new AccountRepositoryStub();
+        AccountService accountService = new AccountService(accountRepositoryStub);
     }
 }
