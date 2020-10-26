@@ -1,6 +1,7 @@
 package pl.walasiak.testing.account;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class AccountRepositoryStub implements AccountRepository {
@@ -14,11 +15,6 @@ public class AccountRepositoryStub implements AccountRepository {
         Account account1 = new Account(adress2);
         Account account2 = new Account();
 
-        List<Account> accountList = new ArrayList<>();
-        accountList.add(account);
-        accountList.add(account1);
-        accountList.add(account2);
-
-        return accountList;
+        return Arrays.asList(account, account1, account2);
     }
 }
