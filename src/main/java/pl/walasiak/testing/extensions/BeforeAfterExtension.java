@@ -1,4 +1,4 @@
-package pl.walasiak.testing;
+package pl.walasiak.testing.extensions;
 
 import org.junit.jupiter.api.extension.*;
 

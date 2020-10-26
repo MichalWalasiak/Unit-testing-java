@@ -1,5 +1,7 @@
 package pl.walasiak.testing;
 
+import pl.walasiak.testing.order.Order;
+
 import java.util.ArrayList;
 import java.util.List;
 

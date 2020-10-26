@@ -1,7 +1,9 @@
-package pl.walasiak.testing;
+package pl.walasiak.testing.account;
 
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
+import pl.walasiak.testing.account.Account;
+import pl.walasiak.testing.account.Adress;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
