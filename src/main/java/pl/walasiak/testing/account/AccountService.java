@@ -16,4 +16,11 @@ public class AccountService {
                 .filter(Account::isActive)
                 .collect(Collectors.toList());
     }
+
+    List<Account> getAllNotActiveAccounts(List<Account> account) {
+        return accountRepository.getAllAccounts()
+                .stream()
+                .filter(element -> !element.isActive())
+                .collect(Collectors.toList());
+    }
 }
