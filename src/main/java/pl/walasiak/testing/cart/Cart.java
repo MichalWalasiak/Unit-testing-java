@@ -1,5 +1,6 @@
-package pl.walasiak.testing;
+package pl.walasiak.testing.cart;
 
+import pl.walasiak.testing.Meal;
 import pl.walasiak.testing.order.Order;
 
 import java.util.ArrayList;
