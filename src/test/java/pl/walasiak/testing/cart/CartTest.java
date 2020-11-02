@@ -1,6 +1,8 @@
-package pl.walasiak.testing;
+package pl.walasiak.testing.cart;
 
 import org.junit.jupiter.api.*;
+import pl.walasiak.testing.Meal;
+import pl.walasiak.testing.cart.Cart;
 import pl.walasiak.testing.order.Order;
 
 import java.time.Duration;
