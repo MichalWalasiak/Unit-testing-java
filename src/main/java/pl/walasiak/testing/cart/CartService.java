@@ -2,5 +2,9 @@ package pl.walasiak.testing.cart;
 
 public class CartService {
 
-    CartHandler cartHandler;
+    private CartHandler cartHandler;
+
+    public CartService(final CartHandler cartHandler) {
+        this.cartHandler = cartHandler;
+    }
 }
