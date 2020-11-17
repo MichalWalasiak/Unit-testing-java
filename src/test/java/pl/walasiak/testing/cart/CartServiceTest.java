@@ -2,7 +2,6 @@ package pl.walasiak.testing.cart;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.InOrder;
-import org.mockito.Mock;
 import pl.walasiak.testing.order.Order;
 import pl.walasiak.testing.order.OrderStatus;
 
