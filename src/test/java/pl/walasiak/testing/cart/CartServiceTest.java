@@ -119,7 +119,7 @@ public class CartServiceTest {
 
         CartHandler cartHandler = mock(CartHandler.class);
         CartService cartService = new CartService(cartHandler);
-        given(cartHandler.canHandleCart(cart)).willReturn(true);
+        given(cartHandler.canHandleCart(argThat(c -> c.getOrders().size() > 0))).willReturn(true);
 
         //when
         Cart resultCart = cartService.processCart(cart);
