@@ -98,15 +98,14 @@ public class CartServiceTest {
 
         CartHandler cartHandler = mock(CartHandler.class);
         CartService cartService = new CartService(cartHandler);
-        given(cartHandler.canHandleCart(any(Cart.class))).willReturn(false);
+        given(cartHandler.canHandleCart(any(Cart.class))).willReturn(true, false, false, true);
 
-        //when
-        Cart resultCart = cartService.processCart(cart);
 
         //then
-        verify(cartHandler, never()).sendToPrepeare(any(Cart.class));
-        then(cartHandler).should(never()).sendToPrepeare(any(Cart.class));
-        assertThat(resultCart.getOrders(), hasSize(1));
-        assertThat(resultCart.getOrders().get(0).getOrderStatus(), equalTo(OrderStatus.REJECTED));
+        assertThat(cartHandler.canHandleCart(cart), equalTo(true));
+        assertThat(cartHandler.canHandleCart(cart), equalTo(false));
+        assertThat(cartHandler.canHandleCart(cart), equalTo(false));
+        assertThat(cartHandler.canHandleCart(cart), equalTo(true));
+
     }
 }
