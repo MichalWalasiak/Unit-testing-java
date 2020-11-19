@@ -148,5 +148,4 @@ public class CartServiceTest {
         //then
         assertThrows(IllegalStateException.class, () -> cartService.processCart(cart));
     }
-
 }
