@@ -1,6 +1,7 @@
 package pl.walasiak.testing.cart;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InOrder;
 import pl.walasiak.testing.order.Order;
 import pl.walasiak.testing.order.OrderStatus;
@@ -147,5 +148,27 @@ public class CartServiceTest {
         //when
         //then
         assertThrows(IllegalStateException.class, () -> cartService.processCart(cart));
+    }
+
+    @Test
+    void processCartShouldSendOrderToPrepeareWithArgumentCaptors() {
+
+        //given
+        Order order = new Order();
+        Cart cart = new Cart();
+        cart.addOrderToCart(order);
+
+        CartHandler cartHandler = mock(CartHandler.class);
+        CartService cartService = new CartService(cartHandler);
+
+        ArgumentCaptor<Cart> argumentCaptor = ArgumentCaptor.forClass(Cart.class);
+        given(cartHandler.canHandleCart(cart)).willReturn(true);
+
+        //when
+        Cart resultCart = cartService.processCart(cart);
+
+        //then
+        assertThat(resultCart.getOrders(), hasSize(1));
+        assertThat(resultCart.getOrders().get(0).getOrderStatus(), equalTo(OrderStatus.PREPARED));
     }
 }
