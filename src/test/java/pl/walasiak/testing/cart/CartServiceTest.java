@@ -7,8 +7,7 @@ import pl.walasiak.testing.order.Order;
 import pl.walasiak.testing.order.OrderStatus;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
@@ -78,14 +77,14 @@ public class CartServiceTest {
 
         CartHandler cartHandler = mock(CartHandler.class);
         CartService cartService = new CartService(cartHandler);
-        given(cartHandler.canHandleCart(any(Cart.class))).willReturn(false);
+        given(cartHandler.canHandleCart(cart)).willReturn(false);
 
         //when
         Cart resultCart = cartService.processCart(cart);
 
         //then
-        verify(cartHandler, never()).sendToPrepeare(any(Cart.class));
-        then(cartHandler).should(never()).sendToPrepeare(any(Cart.class));
+        verify(cartHandler, never()).sendToPrepeare(cart);
+        then(cartHandler).should(never()).sendToPrepeare(cart);
         assertThat(resultCart.getOrders(), hasSize(1));
         assertThat(resultCart.getOrders().get(0).getOrderStatus(), equalTo(OrderStatus.REJECTED));
     }
@@ -100,7 +99,7 @@ public class CartServiceTest {
 
         CartHandler cartHandler = mock(CartHandler.class);
         CartService cartService = new CartService(cartHandler);
-        given(cartHandler.canHandleCart(any(Cart.class))).willReturn(true, false, false, true);
+        given(cartHandler.canHandleCart(cart)).willReturn(true, false, false, true);
 
 
         //then
@@ -168,6 +167,9 @@ public class CartServiceTest {
         Cart resultCart = cartService.processCart(cart);
 
         //then
+        then(cartHandler).should().sendToPrepeare(argumentCaptor.capture());
+
+        assertThat(argumentCaptor.getValue().getOrders().size(), equalTo(1));
         assertThat(resultCart.getOrders(), hasSize(1));
         assertThat(resultCart.getOrders().get(0).getOrderStatus(), equalTo(OrderStatus.PREPARED));
     }
