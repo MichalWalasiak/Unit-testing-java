@@ -210,6 +210,12 @@ public class CartServiceTest {
         CartHandler cartHandler = mock(CartHandler.class);
         CartService cartService = new CartService(cartHandler);
 
+        doAnswer(invocationOnMock -> {
+            Cart argumentCart = invocationOnMock.getArgument(0);
+            argumentCart.clearCart();
+            return true;
+        }).when(cartHandler).canHandleCart(cart);
+
 
         //when
         Cart resultCart = cartService.processCart(cart);
