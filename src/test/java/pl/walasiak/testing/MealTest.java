@@ -167,9 +167,13 @@ class MealTest {
         Meal meal = mock(Meal.class);
         given(meal.getPrice()).willReturn(15);
         given(meal.getQuantity()).willReturn(3);
+        given(meal.sumPrice()).willCallRealMethod();
 
         //when
+        int result = meal.sumPrice();
+
         //then
+        assertThat(result, equalTo(45));
     }
 
     private int calculateTotalPrice(int price, int quantity){
