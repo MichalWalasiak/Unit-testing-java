@@ -9,8 +9,7 @@ import pl.walasiak.testing.order.OrderStatus;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.BDDMockito.then;
+import static org.mockito.BDDMockito.*;
 import static org.mockito.Mockito.*;
 
 public class CartServiceTest {
@@ -185,6 +184,12 @@ public class CartServiceTest {
         CartHandler cartHandler = mock(CartHandler.class);
         CartService cartService = new CartService(cartHandler);
         given(cartHandler.canHandleCart(cart)).willReturn(true);
+
+        doNothing().when(cartHandler).sendToPrepeare(cart);
+        willDoNothing().given(cartHandler).sendToPrepeare(cart);
+        willDoNothing().willThrow(IllegalStateException.class).given(cartHandler).sendToPrepeare(cart);
+
+
 
         //when
         Cart resultCart = cartService.processCart(cart);
