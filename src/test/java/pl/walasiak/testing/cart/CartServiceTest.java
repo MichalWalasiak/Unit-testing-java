@@ -9,6 +9,7 @@ import pl.walasiak.testing.order.OrderStatus;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.BDDMockito.*;
 import static org.mockito.Mockito.*;
 
@@ -223,6 +224,24 @@ public class CartServiceTest {
         //then
         assertThat(resultCart.getOrders(), hasSize(1));
         assertThat(resultCart.getOrders().get(0).getOrderStatus(), equalTo(OrderStatus.PREPARED));
+    }
+
+    @Test
+    void deliveryShouldBeeFree() {
+        //given
+        Cart cart = new Cart();
+        cart.addOrderToCart(new Order());
+        cart.addOrderToCart(new Order());
+        cart.addOrderToCart(new Order());
+        CartHandler cartHandler = mock(CartHandler.class);
+
+        given(cartHandler.isDeliveryFree(cart)).willCallRealMethod();
+
+        //when
+        boolean isDeliveryFree = cartHandler.isDeliveryFree(cart);
+
+        //then
+        assertTrue(isDeliveryFree);
     }
 
 }
